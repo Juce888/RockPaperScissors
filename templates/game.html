@@ -6,10 +6,25 @@
 </head>
 <body>
     {% block content %}
-        <img id="rock" src="/Images/Rock.jpeg" alt="Dwayne 'The Rock' Johnson">
-        <img id="paper" src="/Images/Paper.jpeg" alt="Paper">
-        <img id="scissors" src="/Images/Scissors.png" alt="These are scissors">
-        <img id="pikachu" src="/Images/PikachuPickaxe.jpeg" alt="Pikachu with a pickaxe">
+        <a href="/result?id=Rock">
+        <img src="{{ url_for('static', filename='images/Rock.jpeg') }}" alt="Rock" class="image">
+        </a>
+        <a href="/result?id=Paper">
+        <img src="{{ url_for('static', filename='images/Paper.jpeg') }}" alt="Paper" class="image">
+        </a>
+        <a href="/result?id=Scissors">
+        <img src="{{ url_for('static', filename='images/Scissors.jpeg') }}" alt="Scissors" class="image">
+        </a>
+        <a href="/result?id=PikachuPickaxe">
+        <img src="{{ url_for('static', filename='images/PikachuPickaxe.jpeg') }}" alt="Pikachu with a Pickaxe" class="image">
+        </a>
+
+        <style>
+            .image {
+                width: 200px;
+                height: 200px
+            }
+        </style>
     {% endblock %}
 </body>
 </html>

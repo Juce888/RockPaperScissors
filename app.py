@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ class Game():
     def setPlayerChoice(self, choice):
         self.playerChoice = choice + '.jpeg'
 
-    def setComputerChoice(self, ):
+    def setComputerChoice(self):
         self.computerChoice = random.choice(self.options)
 
     def determineWinner(self):
@@ -26,8 +26,8 @@ class Game():
         winner = {
             'Rock': ['Scissors'],
             'Paper': ['Rock'],
-            'Scissors': ['Paper', 'PickaxePikachu'],
-            'PickaxePikachu': ['Rock', 'Scissors'],
+            'Scissors': ['Paper', 'PikachuPickaxe'],
+            'PikachuPickaxe': ['Rock', 'Scissors'],
         }
 
         if self.computerChoice in winner[self.playerChoice]:
@@ -41,11 +41,17 @@ game = Game()
 
 @app.route('/')
 def index():  # put application's code here
+
     return render_template('index.html')
 
 @app.route('/game')
 def game():
     return render_template('game.html')
+
+@app.route('/result')
+def result():
+    return_value = request.args.get('id')
+    return render_template('result.html')
 
 if __name__ == '__main__':
     app.run()
