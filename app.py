@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 
 app = Flask(__name__)
 
@@ -41,7 +41,6 @@ game = Game()
 
 @app.route('/')
 def index():  # put application's code here
-
     return render_template('index.html')
 
 @app.route('/game')
@@ -51,6 +50,14 @@ def game():
 @app.route('/result')
 def result():
     return_value = request.args.get('id')
+    game.setPlayerChoice(return_value)
+    game.setComputerChoice()
+    game.determineWinner()
+
+    session['win'] = game.wins
+    session['loss'] = game.losses
+    session['avg'] = game.wins / game.losses
+    session['decision'] = game.determineWinner()
     return render_template('result.html')
 
 if __name__ == '__main__':

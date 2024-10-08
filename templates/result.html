@@ -8,5 +8,15 @@
 
     {% extends 'layout.html' %}
 
+    {% block content %}
+        <p>Let's see who won...</p>
+
+        <p>{{ session['decision'] }}</p>
+
+        <p>Total Player Wins: {{ session['win'] }}</p>
+        <p>Total Player Losses: {{ session['loss'] }}</p>
+        <p>Win Loss Ratio: {{ session['avg'] }}</p>
+    {% endblock %}
+
 </body>
 </html>
